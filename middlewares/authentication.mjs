@@ -3,7 +3,6 @@ import userModel from "../model/userModel.mjs";
 
 export const protect = async (req, res, next) => {
   const bearerHeader = req.headers["authorization"];
-  console.log("yes ! verify");
 
   if (typeof bearerHeader !== "undefined") {
     try {

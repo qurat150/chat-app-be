@@ -14,6 +14,6 @@ router.get("/me", protect, me);
 router.get("/allUsers/:id", getAllUsers);
 router.post("/register", register);
 router.post("/login", login);
-router.post("/setProfilePicture/:id", protect, setProfilePicture);
+router.post("/setProfilePicture", protect, setProfilePicture);
 
 export default router;

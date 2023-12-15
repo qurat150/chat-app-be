@@ -71,7 +71,7 @@ export const login = async (req, res, next) => {
 
 export const setProfilePicture = async (req, res, next) => {
   try {
-    const userId = req.params.id;
+    const userId = req.user._id;
     const profileImage = req.body.image;
     console.log(userId, profileImage);
     const userData = await userModel.findByIdAndUpdate(userId, {
