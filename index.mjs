@@ -10,7 +10,12 @@ import msgRouter from "./routes/messagesRoute.mjs";
 dotenv.config();
 
 try {
-  mongoose.connect("mongodb://0.0.0.0/chat");
+  mongoose
+    .connect(process.env.MONGO_URL)
+    .then(() => {
+      console.log("Databse connected !");
+    })
+    .catch((error) => console.log("Error while connecteing DB", error));
 } catch (error) {
   console.log(error);
 }
@@ -27,7 +32,7 @@ app.use("/api/auth", userRouter);
 app.use("/api/messages", msgRouter);
 
 const server = app.listen(5000, () => {
-  // console.log(`Server started at port ${server.address().port}`);
+  console.log(`Server started at port ${server.address().port}`);
 });
 
 const io = new Server(server, {
