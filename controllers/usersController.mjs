@@ -24,7 +24,7 @@ export const register = async (req, res, next) => {
     jwt.sign(
       { user: user._id },
       process.env.JWT_SECRETE,
-      { expiresIn: "3h" },
+      { expiresIn: "14d" },
       (err, token) => {
         res.json({
           token: `bearer ${token}`,
@@ -35,6 +35,8 @@ export const register = async (req, res, next) => {
     );
   } catch (error) {
     next(error);
+    console.log("erori", error);
+    return res.json({ status: 401, msg: error });
   }
 };
 
@@ -54,7 +56,7 @@ export const login = async (req, res, next) => {
     jwt.sign(
       { user: user._id },
       process.env.JWT_SECRETE,
-      { expiresIn: "3h" },
+      { expiresIn: "14d" },
       (err, token) => {
         res.json({
           token: `bearer ${token}`,
@@ -66,6 +68,8 @@ export const login = async (req, res, next) => {
     // return res.json({ status: true, user });
   } catch (error) {
     next(error);
+    console.log("erori", error);
+    return res.json({ status: 401, msg: error });
   }
 };
 

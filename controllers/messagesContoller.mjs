@@ -31,6 +31,7 @@ export const getAllMessages = async (req, res, next) => {
       return {
         fromSelf: msg.sender.toString() === from,
         message: msg.message,
+        timeStamp: msg.createdAt,
       };
     });
     res.json(projectedMessages);
