@@ -10,7 +10,7 @@ export const addMessage = async (req, res, next) => {
       reciever: to,
     });
     if (!data) return res.json({ msg: "Failed to save message to database" });
-    return res.json({ message, to: to });
+    return res.json({ message, to: to, timeStamp: data.createdAt});
   } catch (ex) {
     next(ex);
   }
@@ -24,7 +24,7 @@ export const getAllMessages = async (req, res, next) => {
           $all: [from, to],
         },
       })
-      .sort({ updatedAt: 1 });
+      .sort({ createdAt: 1 });
     // res.json(messages);
 
     const projectedMessages = messages.map((msg) => {
